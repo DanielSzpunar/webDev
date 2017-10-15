@@ -87,7 +87,18 @@ var handlers = {
     }
 };
 
+var view = {
+    displayTodos: function(){
+        var todoUl = document.querySelector("ul");
+        todoUl.innerHTML = "";
+        for (var i = 0; i < todoList.todos.length; i++) {
+            var todoLi = document.createElement("li");
+            var todoText = todoList.todo[i].todoText;
+            todoUl.appendChild(todoLi);
 
+        }
+    }
+};
 /*
 
 todoList.addTodo("item 1");
