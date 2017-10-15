@@ -6,7 +6,13 @@ var todoList = {
         }
             else {
                 for (var i = 0; i < this.todos.length; i++) {
-                    console.log(this.todos[i].todoText + ", completed: " + this.todos[i].completed);
+                    if(this.todos[i].completed == true) {
+                        console.log(this.todos[i].todoText + "  (x)");
+                    }
+                    else {
+                        console.log(this.todos[i].todoText + "  ( )");
+                    }
+                    //console.log(this.todos[i].todoText + ", completed: " + this.todos[i].completed);
                 }
             }
     },
@@ -44,18 +50,42 @@ var todoList = {
             }
         }
         this.displayTodos();
+    },
+    deleteTodo: function(position){
+        todoList.todos.splice(position,1);
     }  
 };
-var  displayTodosButton = document.getElementById("displayTodosButton");
-var toggleAllButton = document.getElementById("toggleAllButton");
-
-displayTodosButton.addEventListener("click", function(){
-    todoList.displayTodos();
-});
-toggleAllButton.addEventListener("click", function(){
-    todoList.toggleAll();
-});
-
+var handlers = {
+    displayTodos: function() {
+        todoList.displayTodos();
+    },
+    toggleAll: function() {
+        todoList.toggleAll();
+    },
+    addTodo: function(){
+        var addTodoText = document.getElementById("addTodoText").value;
+        todoList.addTodo(addTodoText);
+        addTodoText ="";
+    },
+    changeTodo: function(){
+       var changeTodoPosition = document.getElementById("changeTodoPosition").valueAsNumber;
+       var changeTodoText = document.getElementById("changeTodoText").value; 
+       todoList.changeTodo(changeTodoPosition, changeTodoText);
+       changeTodoPosition = "";
+       changeTodoText = "";
+    }, 
+    deleteTodo: function() {
+        var deleteTodo = document.getElementById("deleteTodo").valueAsNumber;
+        todoList.deleteTodo(deleteTodo);
+        deleteTodo = "";
+        todoList.displayTodos();
+    },
+    toggleComplete: function() {
+        var toggleComplete = document.getElementById("toggleComplete").valueAsNumber;
+        todoList.toggleCompleted(toggleComplete);
+        toggleComplete = "";
+    }
+};
 
 
 /*

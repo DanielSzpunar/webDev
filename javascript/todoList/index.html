@@ -13,10 +13,26 @@
 </head>
 <body>
     <h1>Todo List:</h1>
-    <button id ="displayTodosButton">Display Todolist</button>
-    <br>
-    <button id ="toggleAllButton">Toggle Completed</button>
+    <button onclick="handlers.displayTodos()">Display Todolist</button>
+    <button onclick="handlers.toggleAll()">Toggle Completed</button>
+    <div>
+        <input id="addTodoText" type="text">
+        <button onclick="handlers.addTodo()">Add A Todo</button>
+    </div>
+    <div>
+        <input id="changeTodoText" type="text">
+        <input id="changeTodoPosition" type="number">
+        <button onclick="handlers.changeTodo()">Change a Todo</button>
+    </div>
+    <div>
+        <input id="deleteTodo" type="number">
+        <button onclick="handlers.deleteTodo()">Delete a Todo</button>
+    </div>
+    <div>
+        <input id="toggleComplete" type="number">
+    </div>
 
+    
 
     <!--<input type="text" placeholder="Type todo here">
     <button onclick="">submit</button>
