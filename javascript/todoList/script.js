@@ -56,16 +56,19 @@ var todoList = {
     }  
 };
 var handlers = {
-    displayTodos: function() {
+    /*displayTodos: function() {
         todoList.displayTodos();
-    },
+        
+    },*/
     toggleAll: function() {
         todoList.toggleAll();
+        view.displayTodos();
     },
     addTodo: function(){
         var addTodoText = document.getElementById("addTodoText").value;
         todoList.addTodo(addTodoText);
         addTodoText ="";
+        view.displayTodos();
     },
     changeTodo: function(){
        var changeTodoPosition = document.getElementById("changeTodoPosition").valueAsNumber;
@@ -73,17 +76,19 @@ var handlers = {
        todoList.changeTodo(changeTodoPosition, changeTodoText);
        changeTodoPosition = "";
        changeTodoText = "";
+       view.displayTodos();
     }, 
     deleteTodo: function() {
         var deleteTodo = document.getElementById("deleteTodo").valueAsNumber;
         todoList.deleteTodo(deleteTodo);
         deleteTodo = "";
-        todoList.displayTodos();
+       view.displayTodos();
     },
     toggleComplete: function() {
         var toggleComplete = document.getElementById("toggleComplete").valueAsNumber;
         todoList.toggleCompleted(toggleComplete);
         toggleComplete = "";
+        view.displayTodos();
     }
 };
 
@@ -93,9 +98,15 @@ var view = {
         todoUl.innerHTML = "";
         for (var i = 0; i < todoList.todos.length; i++) {
             var todoLi = document.createElement("li");
-            var todoText = todoList.todo[i].todoText;
-            todoUl.appendChild(todoLi);
-
+            var todoTextWithCompletion = "";
+            if (todoList.todos[i].completed === true) {
+                todoLi.textContent = "(x) " + todoList.todos[i].todoText;
+                todoUl.appendChild(todoLi);
+            }
+            else {
+                todoLi.textContent = "() " + todoList.todos[i].todoText;
+                todoUl.appendChild(todoLi);
+            }
         }
     }
 };
